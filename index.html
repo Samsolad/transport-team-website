@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Transport Team — Safe, Simple Transport Coordination</title>
+<meta name="description" content="Transport Team replaces WhatsApp chaos with a proper transport management system for churches, SEND schools and community programmes. Free 30-day trial."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0d7377;
+  --teal2:#14a085;
+  --dark:#0c1a1c;
+  --card:#162a2d;
+  --bord:rgba(255,255,255,0.08);
+  --text:#e8f0f0;
+  --muted:rgba(232,240,240,0.5);
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--teal);color:#fff}
+
+/* ── SCROLL REVEAL ───────────────────────────────── */
+.reveal{
+  opacity:0;
+  transform:translateY(36px);
+  transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-fade{opacity:0;transition:opacity 1s ease}
+.reveal-fade.visible{opacity:1}
+.reveal-stagger>*{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0.05s}
+.reveal-stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:0.13s}
+.reveal-stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:0.21s}
+.reveal-stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:0.29s}
+.reveal-stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:0.37s}
+.reveal-stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:0.45s}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(12,26,28,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--bord);transition:padding 0.3s,background 0.3s}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:#fff;letter-spacing:-0.3px}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-link{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.2s}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-signin{color:var(--muted);font-size:14px;font-weight:500;padding:10px 18px;border-radius:10px;border:1px solid var(--bord);text-decoration:none;transition:all 0.2s}
+.nav-signin:hover{background:rgba(255,255,255,0.05);color:#fff}
+.nav-cta{background:var(--teal);color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 22px;border-radius:10px;transition:all 0.2s}
+.nav-cta:hover{background:var(--teal2);transform:translateY(-1px)}
+
+/* ── HERO ────────────────────────────────────────── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(13,115,119,0.2) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(13,115,119,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(13,115,119,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-inner{position:relative;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(13,115,119,0.15);border:1px solid rgba(13,115,119,0.3);border-radius:100px;padding:6px 18px 6px 10px;font-size:12px;font-weight:600;color:#4dc8ad;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:28px;animation:fadeUp 0.6s ease both}
+.pulse{width:7px;height:7px;border-radius:50%;background:#4dc8ad;animation:pulse 2s infinite;flex-shrink:0}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(44px,7vw,82px);color:#fff;line-height:1.05;letter-spacing:-2px;margin-bottom:22px;animation:fadeUp 0.7s 0.1s ease both}
+.hero h1 em{font-style:italic;color:var(--teal2)}
+.hero p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.75;animation:fadeUp 0.7s 0.2s ease both}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fadeUp 0.7s 0.3s ease both}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:15px 32px;border-radius:12px;box-shadow:0 8px 32px rgba(13,115,119,0.45);transition:all 0.2s}
+.btn-primary:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 16px 48px rgba(13,115,119,0.5)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;font-size:15px;font-weight:500;padding:15px 24px;border-radius:12px;border:1px solid var(--bord);transition:all 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.15)}
+
+/* ── TRUST BAR ───────────────────────────────────── */
+.trust{padding:28px 48px;border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-weight:500}
+.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* ── SECTIONS ────────────────────────────────────── */
+section{padding:100px 24px;max-width:1100px;margin:0 auto}
+.section-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal2);margin-bottom:16px}
+.section-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(30px,4vw,50px);color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--muted);max-width:540px;line-height:1.75}
+.divider{height:1px;background:var(--bord);margin:0 48px}
+
+/* ── PROBLEM ─────────────────────────────────────── */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:56px}
+.problem-card{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s}
+.problem-card:hover{border-color:rgba(13,115,119,0.4);transform:translateY(-3px)}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ef4444,transparent);opacity:0.6}
+.problem-emoji{font-size:28px;margin-bottom:16px}
+.problem-card h3{font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px}
+.problem-card p{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ── HOW IT WORKS ────────────────────────────────── */
+.how-wrap{background:var(--dark);padding:100px 0}
+.how-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;background:var(--bord);border-radius:20px;overflow:hidden;border:1px solid var(--bord)}
+.step{background:var(--card);padding:40px 32px}
+.step-num{font-family:'Fraunces',serif;font-weight:900;font-size:56px;color:rgba(13,115,119,0.15);line-height:1;margin-bottom:20px}
+.step-icon{width:46px;height:46px;border-radius:13px;background:rgba(13,115,119,0.15);border:1px solid rgba(13,115,119,0.25);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px}
+.step h3{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:#fff;margin-bottom:10px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ── FEATURES ────────────────────────────────────── */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:56px}
+.feat{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:30px;transition:all 0.3s;position:relative;overflow:hidden}
+.feat:hover{border-color:rgba(13,115,119,0.35);transform:translateY(-3px)}
+.feat.wide{grid-column:span 2}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px;border:1px solid}
+.feat h3{font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px}
+.feat p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* ── WHO ─────────────────────────────────────────── */
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:50px}
+.who-card{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:26px 20px;text-align:center;transition:all 0.25s}
+.who-card:hover{border-color:var(--teal);transform:translateY(-4px)}
+.who-emoji{font-size:32px;margin-bottom:12px}
+.who-card h4{font-family:'Fraunces',serif;font-weight:700;font-size:14px;color:#fff;margin-bottom:5px}
+.who-card p{font-size:12px;color:var(--muted)}
+
+/* ── ROLES ───────────────────────────────────────── */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.role{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:30px;position:relative;overflow:hidden;transition:transform 0.3s,border-color 0.3s}
+.role:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.12)}
+.role-bar{position:absolute;top:0;left:0;right:0;height:3px}
+.role-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;border:1px solid}
+.role h3{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:#fff;margin-bottom:8px}
+.role p{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.65}
+.role ul{list-style:none;display:grid;gap:7px}
+.role ul li{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.role ul li::before{content:'→';color:var(--teal2);font-weight:700;flex-shrink:0;font-size:12px;margin-top:1px}
+
+/* ── PRICING ─────────────────────────────────────── */
+.pricing-wrap{background:var(--dark);padding:100px 0}
+.pricing-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.plan{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:34px 28px;position:relative;transition:transform 0.3s}
+.plan:hover{transform:translateY(-4px)}
+.plan.pop{border-color:var(--teal);background:linear-gradient(160deg,rgba(13,115,119,0.1) 0%,var(--card) 100%)}
+.plan-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 16px;border-radius:0 0 10px 10px}
+.plan-name{font-family:'Fraunces',serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px}
+.plan-price{font-family:'Fraunces',serif;font-weight:900;font-size:42px;color:#fff;margin:16px 0 4px}
+.plan-price span{font-size:16px;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400}
+.plan-desc{font-size:13px;color:var(--muted);margin-bottom:26px;line-height:1.6}
+.plan-feats{list-style:none;display:grid;gap:10px;margin-bottom:30px}
+.plan-feats li{font-size:13px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:10px}
+.check{width:18px;height:18px;border-radius:50%;background:rgba(13,115,119,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--teal2)}
+.plan-btn{display:block;width:100%;padding:13px;border-radius:12px;font-size:14px;font-weight:700;text-align:center;text-decoration:none;transition:all 0.2s}
+.plan-btn.out{background:transparent;color:var(--text);border:1px solid var(--bord)}
+.plan-btn.out:hover{background:rgba(255,255,255,0.05)}
+.plan-btn.fill{background:var(--teal);color:#fff;box-shadow:0 6px 20px rgba(13,115,119,0.4)}
+.plan-btn.fill:hover{background:var(--teal2)}
+
+/* ── TESTIMONIALS ────────────────────────────────── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.testi{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:26px;transition:transform 0.3s,border-color 0.3s}
+.testi:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.1)}
+.stars{color:#fbbf24;font-size:13px;margin-bottom:14px}
+.testi-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:18px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:11px}
+.avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.author-name{font-weight:700;font-size:13px;color:#fff}
+.author-org{font-size:11px;color:var(--muted)}
+
+/* ── CTA ─────────────────────────────────────────── */
+.cta-wrap{margin:0 24px 100px;background:linear-gradient(135deg,rgba(13,115,119,0.22) 0%,rgba(20,160,133,0.1) 100%);border:1px solid rgba(13,115,119,0.28);border-radius:28px;padding:80px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(13,115,119,0.18) 0%,transparent 70%);pointer-events:none}
+.cta-wrap h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(30px,4vw,52px);color:#fff;letter-spacing:-1px;margin-bottom:16px;position:relative}
+.cta-wrap>p{font-size:16px;color:var(--muted);margin-bottom:36px;position:relative}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.cta-note{margin-top:20px;font-size:12px;color:rgba(255,255,255,0.25);position:relative}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-copy{font-size:13px;color:var(--muted)}
+.foot-links{display:flex;gap:24px}
+.foot-link{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.foot-link:hover{color:#fff}
+
+/* ── KEYFRAMES ───────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .nav-links .nav-link{display:none}
+  section{padding:64px 20px}
+  .steps{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .feat.wide{grid-column:span 1}
+  .feat.wide>div{grid-template-columns:1fr!important}
+  .roles{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .trust{gap:20px;padding:20px}
+  .cta-wrap{padding:48px 24px;margin:0 16px 64px}
+  footer{flex-direction:column;text-align:center;padding:32px 20px}
+  .how-inner,.pricing-inner{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">🚌</div>
+    <span class="logo-text">Transport Team</span>
+  </a>
+  <div class="nav-links">
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="#who" class="nav-link">Who it's for</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="nav-signin">Sign In</a>
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="nav-cta">Get Started Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><div class="pulse"></div>&nbsp; Now live — free for your first 30 days &bull; Available worldwide</div>
+    <h1>Stop managing transport<br/>on <em>WhatsApp.</em></h1>
+    <p>Transport Team replaces the group chats, the phone calls, and the spreadsheets. Drivers know who is coming. Passengers know when to be ready. You see everything from one screen.</p>
+    <div class="hero-actions">
+      <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
+        <span>&#x25BA;</span> Start Free Trial
+      </a>
+      <a href="#how" class="btn-ghost">See how it works →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust reveal-fade">
+  <div class="trust-item"><div class="trust-dot"></div> Built for organisations worldwide</div>
+  <div class="trust-item"><div class="trust-dot"></div> No hardware needed</div>
+  <div class="trust-item"><div class="trust-dot"></div> Set up in under 30 minutes</div>
+  <div class="trust-item"><div class="trust-dot"></div> GDPR compliant</div>
+  <div class="trust-item"><div class="trust-dot"></div> No app download required</div>
+</div>
+
+<!-- PROBLEM -->
+<section class="reveal">
+  <div class="section-label">The Problem</div>
+  <h2 class="section-title">Sound familiar?</h2>
+  <p class="section-sub">If you organise transport for your church, school, or community programme, you already know these problems by heart.</p>
+  <div class="problem-grid reveal-stagger">
+    <div class="problem-card">
+      <div class="problem-emoji">📱</div>
+      <h3>The WhatsApp chaos</h3>
+      <p>Members say they are coming, then do not show. The driver waits. Fuel is wasted. You spend your morning on the phone chasing people.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-emoji">❓</div>
+      <h3>No one knows where the bus is</h3>
+      <p>Families stand outside not knowing if the bus is 2 minutes away or 20. They call the driver. The driver is trying to concentrate on the road.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-emoji">📋</div>
+      <h3>The spreadsheet nightmare</h3>
+      <p>Someone has a list. It is out of date. Nobody told the driver that three people are not coming today. Three unnecessary stops later, everyone is late.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-emoji">😰</div>
+      <h3>One person carries everything</h3>
+      <p>The transport coordinator knows everyone's address, who needs what support, and which bus goes where. If they are not available, the whole thing falls apart.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how">
+  <div class="how-inner reveal">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Up and running in three steps.</h2>
+    <p class="section-sub">No IT department needed. No hardware to install. If you can use a smartphone, you can run Transport Team.</p>
+    <div class="steps reveal-stagger">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">🏢</div>
+        <h3>Set up your organisation</h3>
+        <p>Create your workspace in minutes. Add your buses, register your drivers, and set your transport programmes. You get a unique QR code to share with your members.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">📍</div>
+        <h3>Members register once</h3>
+        <p>Families and passengers scan your QR code, enter your invite code, and register their pickup address. That is the only time they ever fill in a form.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">🔔</div>
+        <h3>Daily — just one tap</h3>
+        <p>Each morning, members toggle whether they are going today. Drivers see exactly who to collect. Passengers get notified when the driver is 10, 5, and 2 minutes away.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section id="features" class="reveal">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything you need.<br/>Nothing you don't.</h2>
+  <p class="section-sub">Built specifically for the way community transport actually works — not how enterprise software thinks it works.</p>
+  <div class="features-grid">
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(13,115,119,0.15);border-color:rgba(13,115,119,0.25);color:#4dc8ad">🔒</div>
+      <h3>Complete organisation isolation</h3>
+      <p>Every organisation has its own completely private workspace. A driver from one church cannot see passengers from another. Your data belongs to you and only you.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.25);color:#a78bfa">📲</div>
+      <h3>QR code registration</h3>
+      <p>Print your QR code on a church bulletin, a school letter home, or a community noticeboard. Members scan it, enter your invite code, and are registered in two minutes.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.25);color:#fbbf24">🚦</div>
+      <h3>Departure time management</h3>
+      <p>Set a fixed departure time per programme. Drivers see a live countdown and get notified when it is time to leave. Admins can see in real time whether drivers have started on time.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.25);color:#f472b6">🔔</div>
+      <h3>Live ETA notifications</h3>
+      <p>When the driver is 30, 10, 5 minutes away and arriving, passengers get an instant notification. No more standing outside wondering. No more calls to the driver.</p>
+    </div>
+    <div class="feat wide reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+        <div>
+          <div class="feat-icon" style="background:rgba(13,115,119,0.15);border-color:rgba(13,115,119,0.25);color:#4dc8ad">📊</div>
+          <h3>Admin overview dashboard</h3>
+          <p>See every bus, every driver, and every passenger at a glance. Who is going today, who is not, which buses are available, which drivers are online. Assign passengers to drivers with one click. Spot problems before they become missed pickups.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid var(--bord);border-radius:14px;padding:22px;display:grid;gap:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+            <span style="color:var(--muted)">Bus 1 — Marcus</span>
+            <span style="background:rgba(34,197,94,0.15);color:#4ade80;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">4 going today</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+            <span style="color:var(--muted)">Bus 2 — Diane</span>
+            <span style="background:rgba(13,115,119,0.15);color:#4dc8ad;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">6 going today</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+            <span style="color:var(--muted)">Unassigned</span>
+            <span style="background:rgba(251,191,36,0.15);color:#fbbf24;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">1 passenger</span>
+          </div>
+          <div style="height:1px;background:var(--bord)"></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.2);text-align:center">Live dashboard — updates in real time</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(20,184,166,0.15);border-color:rgba(20,184,166,0.25);color:#2dd4bf">🚌</div>
+      <h3>Driver bus management</h3>
+      <p>Admins assign buses to drivers, or drivers can claim an available unassigned bus themselves. Toggle any bus on or off without removing it from the system. Full fleet visibility from one screen.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon" style="background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.25);color:#a78bfa">♿</div>
+      <h3>Special needs aware</h3>
+      <p>Passengers can add accessibility notes during registration — wheelchair lift needed, specific instructions, behavioural notes. Drivers see these prominently before arriving at each stop.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO -->
+<section id="who" class="reveal">
+  <div class="section-label">Who it's for</div>
+  <h2 class="section-title">Any organisation that<br/>moves people.</h2>
+  <p class="section-sub">If your organisation moves people regularly, Transport Team handles the coordination. Used by churches, schools, and community programmes across the UK, Africa, and beyond.</p>
+  <div class="who-grid reveal-stagger">
+    <div class="who-card">
+      <div class="who-emoji">⛪</div>
+      <h4>Churches</h4>
+      <p>Sunday services, midweek meetings, special events</p>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🏫</div>
+      <h4>SEND Schools</h4>
+      <p>Daily pickup and drop-off for children with special needs</p>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🏕️</div>
+      <h4>Summer Camps</h4>
+      <p>Seasonal transport programmes for children and young people</p>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🏥</div>
+      <h4>Day Centres</h4>
+      <p>Regular transport for adults with disabilities or elderly members</p>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🎭</div>
+      <h4>Youth Clubs</h4>
+      <p>After-school and weekend programmes with regular transport</p>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🏋️</div>
+      <h4>Sports Academies</h4>
+      <p>Training sessions and match-day transport logistics</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROLES -->
+<section class="reveal">
+  <div class="section-label">Three roles, one platform</div>
+  <h2 class="section-title">The right view for<br/>every person.</h2>
+  <div class="roles reveal-stagger">
+    <div class="role">
+      <div class="role-bar" style="background:linear-gradient(90deg,#0d7377,transparent)"></div>
+      <div class="role-icon" style="background:rgba(13,115,119,0.15);border-color:rgba(13,115,119,0.2);color:#4dc8ad">🛡️</div>
+      <h3>Organisation Admin</h3>
+      <p>Full control over your transport operation from one dashboard.</p>
+      <ul>
+        <li>Add, remove, and toggle buses on or off</li>
+        <li>Register and manage drivers</li>
+        <li>Assign buses to drivers</li>
+        <li>Set departure times per programme</li>
+        <li>Monitor all drivers in real time</li>
+        <li>Manage passenger assignments</li>
+        <li>Share QR code and invite code</li>
+      </ul>
+    </div>
+    <div class="role">
+      <div class="role-bar" style="background:linear-gradient(90deg,#f59e0b,transparent)"></div>
+      <div class="role-icon" style="background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.2);color:#fbbf24">🚌</div>
+      <h3>Driver</h3>
+      <p>A focused, mobile-first view for the road.</p>
+      <ul>
+        <li>Toggle availability on or off</li>
+        <li>Claim an unassigned bus</li>
+        <li>See only today's passengers going</li>
+        <li>Countdown to departure time</li>
+        <li>Notify passengers of ETA with one tap</li>
+        <li>Mark pickups and drop-offs</li>
+        <li>See accessibility notes per stop</li>
+      </ul>
+    </div>
+    <div class="role">
+      <div class="role-bar" style="background:linear-gradient(90deg,#6366f1,transparent)"></div>
+      <div class="role-icon" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.2);color:#a78bfa">👨‍👩‍👧</div>
+      <h3>Passenger / Guardian</h3>
+      <p>Register once. One tap every morning after that.</p>
+      <ul>
+        <li>Register with QR code and invite code</li>
+        <li>Toggle going today on or off</li>
+        <li>See scheduled departure time</li>
+        <li>Get notified at 30, 10, 5 min and arrival</li>
+        <li>See driver and bus details</li>
+        <li>Add accessibility notes once</li>
+        <li>No app download ever needed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="reveal">
+  <div class="section-label">What people say</div>
+  <h2 class="section-title">Trusted by programmes<br/>that can't afford mistakes.</h2>
+  <div class="testi-grid reveal-stagger">
+    <div class="testi">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">"Before Transport Team I was managing three buses on a spreadsheet and a WhatsApp group. Now everything is automatic and I can see the whole operation on one screen."</p>
+      <div class="testi-author">
+        <div class="avatar" style="background:rgba(13,115,119,0.2)">🌅</div>
+        <div>
+          <div class="author-name">Sarah K.</div>
+          <div class="author-org">Transport Coordinator, Special Needs School</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">"Our church runs four minibus routes on Sunday. People used to just not show up and the drivers wasted an hour. Now they toggle off the night before and the drivers only stop where needed."</p>
+      <div class="testi-author">
+        <div class="avatar" style="background:rgba(99,102,241,0.2)">⛪</div>
+        <div>
+          <div class="author-name">Pastor James O.</div>
+          <div class="author-org">Transport Deacon, Community Church</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">"The notification when the driver is 10 minutes away has made such a difference for our parents. They know exactly when to have their child at the door. The anxiety is gone."</p>
+      <div class="testi-author">
+        <div class="avatar" style="background:rgba(236,72,153,0.2)">🏫</div>
+        <div>
+          <div class="author-name">Amara T.</div>
+          <div class="author-org">SENCO, Primary School</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="pricing-wrap" id="pricing">
+  <div class="pricing-inner reveal">
+    <div style="text-align:center">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple, honest pricing.</h2>
+      <p class="section-sub" style="margin:0 auto">No per-driver fees. No passenger limits. One price for your whole organisation.</p>
+    </div>
+    <div class="plans reveal-stagger">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">For small programmes just starting out</div>
+        <div class="plan-price">Free <span>/ 30 days</span></div>
+        <div class="plan-desc">Everything you need to run your first transport programme with no commitment.</div>
+        <ul class="plan-feats">
+          <li><div class="check">✓</div> 1 organisation</li>
+          <li><div class="check">✓</div> Up to 5 buses</li>
+          <li><div class="check">✓</div> Up to 10 drivers</li>
+          <li><div class="check">✓</div> Unlimited passengers</li>
+          <li><div class="check">✓</div> Full platform access</li>
+          <li><div class="check">✓</div> QR code registration</li>
+        </ul>
+        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn out">Start free</a>
+      </div>
+      <div class="plan pop">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Community</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">For churches, clubs and community groups</div>
+        <div class="plan-price">£29 <span>/ month</span></div>
+        <div class="plan-desc">Everything your organisation needs to run transport properly.</div>
+        <ul class="plan-feats">
+          <li><div class="check">✓</div> 1 organisation</li>
+          <li><div class="check">✓</div> Unlimited buses and drivers</li>
+          <li><div class="check">✓</div> Unlimited passengers</li>
+          <li><div class="check">✓</div> ETA notifications</li>
+          <li><div class="check">✓</div> Departure time management</li>
+          <li><div class="check">✓</div> QR code and invite code</li>
+          <li><div class="check">✓</div> Email support</li>
+        </ul>
+        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn fill">Start 30-day free trial</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Professional</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">For schools and larger operations</div>
+        <div class="plan-price">£79 <span>/ month</span></div>
+        <div class="plan-desc">Advanced features for organisations that run daily operations.</div>
+        <ul class="plan-feats">
+          <li><div class="check">✓</div> Everything in Community</li>
+          <li><div class="check">✓</div> Manifest export (PDF/CSV)</li>
+          <li><div class="check">✓</div> SMS notifications</li>
+          <li><div class="check">✓</div> Multiple programmes</li>
+          <li><div class="check">✓</div> Advanced reporting</li>
+          <li><div class="check">✓</div> Priority support</li>
+          <li><div class="check">✓</div> Custom invite codes</li>
+        </ul>
+        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn out">Get started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap reveal" id="get-started">
+  <div class="cta-glow"></div>
+  <h2>Ready to end the WhatsApp chaos?</h2>
+  <p>Your first 30 days are completely free. No credit card needed.</p>
+  <div class="cta-actions">
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px;padding:16px 36px">
+      Start Your Free Trial
+    </a>
+    <a href="mailto:hello@transportteam.app" class="btn-ghost" style="font-size:15px">Talk to us first</a>
+  </div>
+  <div class="cta-note">30-day free trial. Cancel any time. No credit card required. Available worldwide.</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:30px;height:30px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🚌</div>
+    <span style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:#fff">Transport Team</span>
+  </div>
+  <div class="foot-copy">Transport Team is a product of J. Ednieds Ltd. Registered in England and Wales. Serving organisations worldwide.</div>
+  <div class="foot-links">
+    <a href="#" class="foot-link">Privacy</a>
+    <a href="#" class="foot-link">Terms</a>
+    <a href="mailto:hello@transportteam.app" class="foot-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ENGINE ──────────────────────────────────────────────
+(function(){
+  var els = document.querySelectorAll('.reveal,.reveal-fade,.reveal-stagger');
+  if(!els.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.07,rootMargin:'0px 0px -48px 0px'});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+// ── NAV SCROLL SHRINK ─────────────────────────────────────────────────
+(function(){
+  var nav = document.getElementById('main-nav');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>60){
+      nav.style.padding='11px 48px';
+      nav.style.background='rgba(12,26,28,0.97)';
+    } else {
+      nav.style.padding='18px 48px';
+      nav.style.background='rgba(12,26,28,0.85)';
+    }
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
