@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Transport Team — Safe, Simple Transport Coordination</title>
-<meta name="description" content="Transport Team replaces WhatsApp chaos with a proper transport management system for churches, SEND schools and community programmes. Free 30-day trial."/>
+<meta name="description" content="Transport Team replaces WhatsApp chaos with a proper transport management system for churches, SEND schools and community programmes. Free for all organisations."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -154,7 +154,7 @@ section{padding:100px 24px;max-width:1100px;margin:0 auto}
 /* ── PRICING ─────────────────────────────────────── */
 .pricing-wrap{background:var(--dark);padding:100px 0}
 .pricing-inner{max-width:1100px;margin:0 auto;padding:0 24px}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.plans{display:grid;grid-template-columns:1fr;gap:18px;margin-top:56px;max-width:520px;margin-left:auto;margin-right:auto}
 .plan{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:34px 28px;position:relative;transition:transform 0.3s}
 .plan:hover{transform:translateY(-4px)}
 .plan.pop{border-color:var(--teal);background:linear-gradient(160deg,rgba(13,115,119,0.1) 0%,var(--card) 100%)}
@@ -245,7 +245,7 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
   <div class="nav-links">
     <a href="#how" class="nav-link">How it works</a>
     <a href="#who" class="nav-link">Who it's for</a>
-    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#pricing" class="nav-link">Access</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
     <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="nav-signin">Sign In</a>
@@ -258,12 +258,12 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
   <div class="hero-glow"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><div class="pulse"></div>&nbsp; Now live &mdash; free for your first 30 days &bull; Available worldwide</div>
+    <div class="hero-badge"><div class="pulse"></div>&nbsp; Now live &mdash; free for everyone &bull; Available worldwide</div>
     <h1>Stop managing transport<br/>on <em>WhatsApp.</em></h1>
     <p>Transport Team replaces the group chats, the phone calls, and the spreadsheets. Drivers know who is coming. Passengers know when to be ready. You see everything from one screen.</p>
     <div class="hero-actions">
       <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
-        <span>&#x25BA;</span> Start Free Trial
+        <span>&#x25BA;</span> Get Started Free
       </a>
       <a href="#how" class="btn-ghost">See how it works &rarr;</a>
     </div>
@@ -546,58 +546,28 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
 <div class="pricing-wrap" id="pricing">
   <div class="pricing-inner reveal">
     <div style="text-align:center">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">Simple, honest pricing.</h2>
-      <p class="section-sub" style="margin:0 auto">No per-driver fees. No passenger limits. One price for your whole organisation.</p>
+      <div class="section-label">Access</div>
+      <h2 class="section-title">Free for everyone, for now.</h2>
+      <p class="section-sub" style="margin:0 auto">No per-driver fees. No passenger limits. Full platform access at no cost while we grow with the community.</p>
     </div>
     <div class="plans reveal-stagger">
-      <div class="plan">
-        <div class="plan-name">Starter</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">For small programmes just starting out</div>
-        <div class="plan-price">Free <span>/ 30 days</span></div>
-        <div class="plan-desc">Everything you need to run your first transport programme with no commitment.</div>
-        <ul class="plan-feats">
-          <li><div class="check">&#x2713;</div> 1 organisation</li>
-          <li><div class="check">&#x2713;</div> Up to 5 buses</li>
-          <li><div class="check">&#x2713;</div> Up to 10 drivers</li>
-          <li><div class="check">&#x2713;</div> Unlimited passengers</li>
-          <li><div class="check">&#x2713;</div> Full platform access</li>
-          <li><div class="check">&#x2713;</div> QR code registration</li>
-        </ul>
-        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn out">Start free</a>
-      </div>
       <div class="plan pop">
-        <div class="plan-badge">Most Popular</div>
-        <div class="plan-name">Community</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">For churches, clubs and community groups</div>
-        <div class="plan-price">&pound;29 <span>/ month</span></div>
-        <div class="plan-desc">Everything your organisation needs to run transport properly.</div>
+        <div class="plan-badge">Currently Free</div>
+        <div class="plan-name">Full access</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">For churches, schools, clubs and community programmes</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-desc">Everything your organisation needs to run transport properly — no credit card, no trial period, no catch.</div>
         <ul class="plan-feats">
-          <li><div class="check">&#x2713;</div> 1 organisation</li>
+          <li><div class="check">&#x2713;</div> 1 organisation workspace</li>
           <li><div class="check">&#x2713;</div> Unlimited buses and drivers</li>
           <li><div class="check">&#x2713;</div> Unlimited passengers</li>
-          <li><div class="check">&#x2713;</div> ETA notifications</li>
+          <li><div class="check">&#x2713;</div> Live ETA notifications</li>
           <li><div class="check">&#x2713;</div> Departure time management</li>
-          <li><div class="check">&#x2713;</div> QR code and invite code</li>
+          <li><div class="check">&#x2713;</div> QR code and invite code registration</li>
+          <li><div class="check">&#x2713;</div> Admin dashboard and real-time overview</li>
           <li><div class="check">&#x2713;</div> Email support</li>
         </ul>
-        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn fill">Start 30-day free trial</a>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Professional</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">For schools and larger operations</div>
-        <div class="plan-price">&pound;79 <span>/ month</span></div>
-        <div class="plan-desc">Advanced features for organisations that run daily operations.</div>
-        <ul class="plan-feats">
-          <li><div class="check">&#x2713;</div> Everything in Community</li>
-          <li><div class="check">&#x2713;</div> Manifest export (PDF/CSV)</li>
-          <li><div class="check">&#x2713;</div> SMS notifications</li>
-          <li><div class="check">&#x2713;</div> Multiple programmes</li>
-          <li><div class="check">&#x2713;</div> Advanced reporting</li>
-          <li><div class="check">&#x2713;</div> Priority support</li>
-          <li><div class="check">&#x2713;</div> Custom invite codes</li>
-        </ul>
-        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn out">Get started</a>
+        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn fill">Get started free</a>
       </div>
     </div>
   </div>
@@ -607,14 +577,14 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
 <div class="cta-wrap reveal" id="get-started">
   <div class="cta-glow"></div>
   <h2>Ready to end the WhatsApp chaos?</h2>
-  <p>Your first 30 days are completely free. No credit card needed.</p>
+  <p>Transport Team is free to use for all organisations. No credit card needed.</p>
   <div class="cta-actions">
     <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px;padding:16px 36px">
-      Start Your Free Trial
+      Get Started Free
     </a>
     <a href="mailto:hello@transportteam.app" class="btn-ghost" style="font-size:15px">Talk to us first</a>
   </div>
-  <div class="cta-note">30-day free trial. Cancel any time. No credit card required. Available worldwide.</div>
+  <div class="cta-note">Free for all organisations. No credit card required. Available worldwide.</div>
 </div>
 
 <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
