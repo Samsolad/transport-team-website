@@ -51,6 +51,7 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',system-ui,sa
 .cookie-text{font-size:13px;color:rgba(232,240,240,0.75);line-height:1.6;max-width:680px}
 .cookie-text a{color:#4dc8ad;text-decoration:underline}
 .cookie-text a:hover{color:#fff}
+.cookie-text .policy-pending{color:rgba(232,240,240,0.55);font-style:italic}
 .cookie-btns{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
 .cookie-accept{background:var(--teal);color:#fff;border:none;padding:10px 22px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
 .cookie-accept:hover{background:var(--teal2);transform:translateY(-1px)}
@@ -197,6 +198,8 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
 .foot-links{display:flex;gap:24px}
 .foot-link{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s}
 .foot-link:hover{color:#fff}
+.foot-link--pending{cursor:default;opacity:0.65}
+.foot-link--pending:hover{color:var(--muted)}
 
 /* ── KEYFRAMES ───────────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
@@ -226,9 +229,9 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
 <!-- ── COOKIE BANNER ──────────────────────────────────────────────────── -->
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
   <p class="cookie-text">
-    We use essential cookies to make this site work. We do not use tracking or advertising cookies.
-    By clicking <strong>Accept</strong> you agree to our use of essential cookies.
-    <a href="#" onclick="return false;">Privacy Policy</a> &middot; <a href="#" onclick="return false;">Cookie Policy</a>
+    We use one cookie to remember your consent choice. We do not use tracking or advertising cookies.
+    By clicking <strong>Accept</strong> you agree to this.
+    <span class="policy-pending">Privacy and cookie policies coming soon.</span>
   </p>
   <div class="cookie-btns">
     <button class="cookie-decline" id="cookie-decline">Decline</button>
@@ -238,7 +241,7 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
 
 <!-- ── NAV ───────────────────────────────────────────────────────────── -->
 <nav id="main-nav">
-  <a href="#" class="logo">
+  <a href="/" class="logo" aria-label="Transport Team home">
     <div class="logo-mark">&#x1F68C;</div>
     <span class="logo-text">Transport Team</span>
   </a>
@@ -248,8 +251,8 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
     <a href="#pricing" class="nav-link">Access</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
-    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="nav-signin">Sign In</a>
-    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="nav-cta">Get Started Free</a>
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-signin">Sign In</a>
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-cta">Get Started Free</a>
   </div>
 </nav>
 
@@ -262,7 +265,7 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
     <h1>Stop managing transport<br/>on <em>WhatsApp.</em></h1>
     <p>Transport Team replaces the group chats, the phone calls, and the spreadsheets. Drivers know who is coming. Passengers know when to be ready. You see everything from one screen.</p>
     <div class="hero-actions">
-      <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
+      <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary">
         <span>&#x25BA;</span> Get Started Free
       </a>
       <a href="#how" class="btn-ghost">See how it works &rarr;</a>
@@ -567,7 +570,7 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
           <li><div class="check">&#x2713;</div> Admin dashboard and real-time overview</li>
           <li><div class="check">&#x2713;</div> Email support</li>
         </ul>
-        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="plan-btn fill">Get started free</a>
+        <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener noreferrer" class="plan-btn fill">Get started free</a>
       </div>
     </div>
   </div>
@@ -579,7 +582,7 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
   <h2>Ready to end the WhatsApp chaos?</h2>
   <p>Transport Team is free to use for all organisations. No credit card needed.</p>
   <div class="cta-actions">
-    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px;padding:16px 36px">
+    <a href="https://transport-team.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:16px;padding:16px 36px">
       Get Started Free
     </a>
     <a href="mailto:hello@transportteam.app" class="btn-ghost" style="font-size:15px">Talk to us first</a>
@@ -595,82 +598,12 @@ footer{border-top:1px solid var(--bord);padding:40px 48px;display:flex;align-ite
   </div>
   <div class="foot-copy">Transport Team is a product of J. Ednieds Ltd. Registered in England and Wales. Serving organisations worldwide.</div>
   <div class="foot-links">
-    <a href="#" class="foot-link">Privacy</a>
-    <a href="#" class="foot-link">Terms</a>
+    <span class="foot-link foot-link--pending" aria-disabled="true">Privacy</span>
+    <span class="foot-link foot-link--pending" aria-disabled="true">Terms</span>
     <a href="mailto:hello@transportteam.app" class="foot-link">Contact</a>
   </div>
 </footer>
 
-<script>
-// ── COOKIE BANNER ─────────────────────────────────────────────────────
-(function(){
-  var banner = document.getElementById('cookie-banner');
-  var acceptBtn = document.getElementById('cookie-accept');
-  var declineBtn = document.getElementById('cookie-decline');
-
-  function getCookie(name){
-    var match = document.cookie.match(new RegExp('(^| )'+name+'=([^;]+)'));
-    return match ? match[2] : null;
-  }
-  function setCookie(name,value,days){
-    var d = new Date();
-    d.setTime(d.getTime()+(days*24*60*60*1000));
-    document.cookie = name+'='+value+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
-  }
-  function hideBanner(){
-    banner.classList.add('hidden');
-  }
-
-  // If already decided, hide immediately
-  if(getCookie('tt_cookie_consent')){
-    hideBanner();
-    return;
-  }
-
-  // Show banner after short delay
-  setTimeout(function(){
-    banner.style.display = 'flex';
-  }, 800);
-
-  acceptBtn.addEventListener('click', function(){
-    setCookie('tt_cookie_consent','accepted',365);
-    hideBanner();
-  });
-
-  declineBtn.addEventListener('click', function(){
-    setCookie('tt_cookie_consent','declined',365);
-    hideBanner();
-  });
-})();
-
-// ── SCROLL REVEAL ─────────────────────────────────────────────────────
-(function(){
-  var els = document.querySelectorAll('.reveal,.reveal-fade,.reveal-stagger');
-  if(!els.length) return;
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.07,rootMargin:'0px 0px -48px 0px'});
-  els.forEach(function(el){ io.observe(el); });
-})();
-
-// ── NAV SCROLL SHRINK ─────────────────────────────────────────────────
-(function(){
-  var nav = document.getElementById('main-nav');
-  window.addEventListener('scroll',function(){
-    if(window.scrollY > 60){
-      nav.style.padding = '11px 48px';
-      nav.style.background = 'rgba(12,26,28,0.97)';
-    } else {
-      nav.style.padding = '18px 48px';
-      nav.style.background = 'rgba(12,26,28,0.85)';
-    }
-  },{passive:true});
-})();
-</script>
+<script src="/assets/main.js" defer></script>
 </body>
 </html>
